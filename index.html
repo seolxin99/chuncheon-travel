@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>춘천 여행 안내</title>
+
+  <style>
+    :root {
+      --ink: #2b2225;
+      --sub: #8c7b80;
+      --line: #ecd8de;
+      --paper: #fff5f7;
+      --pink: #d58ca0;
+      --pink-dark: #aa7183;
+      --photo-bg: #f7e5ea;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: Arial, "Noto Sans KR", "Malgun Gothic", sans-serif;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .nav {
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6vw;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .wordmark {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .12em;
+    }
+
+    .wordmark span {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      margin: 0 8px 1px 0;
+      border-radius: 50%;
+      background: var(--pink);
+    }
+
+    .links {
+      display: flex;
+      gap: 26px;
+      color: #5e625b;
+      font-size: 12px;
+    }
+
+    .links a:hover { color: var(--pink-dark); }
+
+    .intro {
+      max-width: 1240px;
+      margin: auto;
+      padding: 55px 28px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+    }
+
+    .eyebrow {
+      color: #a58b93;
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .intro h1 {
+      margin: 15px 0 0;
+      font-size: clamp(36px, 5.2vw, 68px);
+      font-weight: 600;
+      letter-spacing: -.075em;
+      line-height: 1.08;
+    }
+
+    .intro h1 span { color: #b9788c; }
+
+    .intro-note {
+      max-width: 230px;
+      padding-bottom: 5px;
+      color: var(--sub);
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .hero {
+      max-width: 1240px;
+      margin: auto;
+      padding: 0 28px;
+    }
+
+    .hero-photo {
+      position: relative;
+      height: clamp(270px, 43vw, 510px);
+      overflow: hidden;
+      background: var(--photo-bg);
+    }
+
+    .hero-photo img,
+    .photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-caption {
+      position: absolute;
+      z-index: 2;
+      bottom: 20px;
+      left: 22px;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, .92);
+      font-size: 11px;
+    }
+
+    .hero-caption b {
+      margin-right: 10px;
+      font-size: 13px;
+    }
+
+    .indexline {
+      max-width: 1240px;
+      margin: auto;
+      padding: 15px 28px 0;
+      display: flex;
+      justify-content: space-between;
+      color: #9f9296;
+      font-size: 10px;
+      letter-spacing: .12em;
+    }
+
+    .section {
+      max-width: 1240px;
+      margin: auto;
+      padding: 92px 28px 12px;
+    }
+
+    .section-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 25px;
+    }
+
+    .section-top h2 {
+      margin: 8px 0 0;
+      font-size: 30px;
+      font-weight: 600;
+      letter-spacing: -.06em;
+    }
+
+    .section-top p {
+      margin: 0 0 3px;
+      color: var(--sub);
+      font-size: 11px;
+    }
+
+    .places {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px 16px;
+    }
+
+    .place { min-width: 0; }
+
+    .photo {
+      position: relative;
+      height: clamp(160px, 22vw, 250px);
+      overflow: hidden;
+      background: var(--photo-bg);
+    }
+
+    .photo-credit {
+      position: absolute;
+      z-index: 2;
+      bottom: 8px;
+      left: 8px;
+      padding: 5px 7px;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, .9);
+      color: #72636a;
+      font-size: 9px;
+      line-height: 1.3;
+    }
+
+    .photo-credit:hover {
+      color: #bd5878;
+      text-decoration: underline;
+    }
+
+    .place-title {
+      display: flex;
+      align-items: baseline;
+      gap: 9px;
+      margin-top: 12px;
+    }
+
+    .place-title span {
+      color: #a58f96;
+      font-size: 10px;
+      letter-spacing: .1em;
+    }
+
+    .place h3 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -.035em;
+    }
+
+    .place p,
+    .food-card p {
+      margin: 6px 0 0;
+      color: var(--sub);
+      font-size: 11px;
+    }
+
+    .food-wrap {
+      margin-top: 92px;
+      padding: 64px max(28px, calc((100vw - 1184px) / 2)) 76px;
+      background: var(--photo-bg);
+    }
+
+    .food-inner {
+      max-width: 1184px;
+      margin: auto;
+    }
+
+    .food-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .food-card { background: var(--paper); }
+    .food-card .photo { height: clamp(170px, 22vw, 245px); }
+
+    .food-card .info { padding: 14px 15px 17px; }
+
+    .food-card small {
+      color: #9f9296;
+      font-size: 9px;
+      letter-spacing: .14em;
+    }
+
+    .food-card h3 {
+      margin: 7px 0 5px;
+      font-size: 17px;
+      letter-spacing: -.04em;
+    }
+
+    .bottom {
+      max-width: 1240px;
+      margin: auto;
+      padding: 25px 28px 30px;
+      display: flex;
+      justify-content: space-between;
+      color: #9f9296;
+      font-size: 10px;
+    }
+
+    .bottom b { color: #30332c; }
+
+    /* 카드를 눌러 상세 정보를 열 수 있다는 표시 */
+    .interactive-card {
+      position: relative;
+      cursor: pointer;
+      transition: transform .18s ease;
+    }
+
+    .interactive-card:hover { transform: translateY(-3px); }
+
+    .interactive-card:focus-visible {
+      outline: 2px solid #bd8294;
+      outline-offset: 4px;
+    }
+
+    .detail-hint {
+      display: inline-block;
+      margin-top: 10px;
+      color: var(--pink-dark);
+      font-size: 10px;
+    }
+
+    .food-card .detail-hint { margin: 8px 15px 14px; }
+
+    /* 상세 정보 팝업 */
+    .modal[hidden] { display: none; }
+
+    .modal {
+      position: fixed;
+      z-index: 20;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(39, 28, 32, .63);
+      backdrop-filter: blur(3px);
+    }
+
+    .modal-dialog {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: min(760px, 100%);
+      max-height: 88vh;
+      overflow: auto;
+      border-radius: 8px;
+      background: #fffafb;
+      box-shadow: 0 24px 80px rgba(37, 21, 29, .25);
+    }
+
+    .modal-image {
+      position: relative;
+      min-height: 360px;
+      background: var(--photo-bg);
+    }
+
+    .modal-image img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 360px;
+      object-fit: cover;
+    }
+
+    .modal-copy {
+      align-self: center;
+      padding: 42px 32px 30px;
+    }
+
+    .modal-copy small {
+      color: #a77e89;
+      font-size: 10px;
+      letter-spacing: .13em;
+    }
+
+    .modal-copy h2 {
+      margin: 10px 0 14px;
+      font-size: 27px;
+      letter-spacing: -.06em;
+    }
+
+    .modal-copy p {
+      margin: 0 0 12px;
+      color: #75666b;
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .modal-copy a {
+      display: inline-block;
+      margin-top: 10px;
+      color: #a45e75;
+      font-size: 11px;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .modal-close {
+      position: absolute;
+      z-index: 3;
+      top: 12px;
+      right: 12px;
+      width: 36px;
+      height: 36px;
+      border: 0;
+      border-radius: 50%;
+      background: white;
+      color: #55464b;
+      font-size: 23px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 700px) {
+      .nav { height: 60px; padding: 0 20px; }
+      .links { gap: 15px; font-size: 11px; }
+      .intro { display: block; padding: 39px 20px 22px; }
+      .intro h1 { font-size: 44px; }
+      .intro-note { margin-top: 16px; }
+      .hero { padding: 0 20px; }
+      .hero-photo { height: 310px; }
+      .indexline { padding: 12px 20px 0; }
+      .section { padding: 65px 20px 5px; }
+      .section-top { display: block; }
+      .section-top h2 { font-size: 27px; }
+      .section-top p { margin-top: 10px; }
+      .places { grid-template-columns: repeat(2, 1fr); gap: 23px 11px; }
+      .photo { height: clamp(130px, 37vw, 210px); }
+      .place-title { display: block; }
+      .place-title span { display: block; margin-bottom: 5px; }
+      .place h3 { font-size: 14px; }
+      .place p { font-size: 10px; }
+      .food-wrap { margin-top: 66px; padding: 47px 20px 52px; }
+      .food-grid { grid-template-columns: 1fr; gap: 12px; }
+      .food-card { display: grid; grid-template-columns: 42% 1fr; }
+      .food-card .photo { height: auto; min-height: 135px; }
+      .food-card .info { align-self: center; padding: 14px; }
+      .food-card h3 { font-size: 16px; }
+      .bottom { padding: 22px 20px 26px; }
+      .modal { padding: 12px; }
+      .modal-dialog { display: block; max-height: 92vh; }
+      .modal-image, .modal-image img {
+        height: 32vh;
+        min-height: 220px;
+        max-height: 310px;
+      }
+      .modal-copy { padding: 25px 22px 24px; }
+      .modal-copy h2 { font-size: 23px; }
+    }
+  .bottom{flex-wrap:wrap;gap:8px}.image-credit{margin-left:auto;font-size:9px;color:#9f9296}.image-credit summary{cursor:pointer;text-align:right}.image-credit ul{margin:8px 0 0;padding-left:18px;text-align:left;font-size:10px;line-height:1.8}.image-credit a{text-decoration:underline;text-underline-offset:2px}</style>
+</head>
+
+<body>
+  <header class="nav">
+    <a class="wordmark" href="#top"><span></span>CHUNCHEON / 춘천</a>
+    <nav class="links">
+      <a href="#places">관광지</a>
+      <a href="#food">먹거리</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="intro">
+      <div>
+        <div class="eyebrow">A DAY IN CHUNCHEON · Gangwondo</div>
+        <h1>춘천을<br><span>천천히</span> 만나는 곳</h1>
+      </div>
+      <p class="intro-note">
+        산책도 하고, 드라이브도 하며 <br>
+        춘천에서 좋아하는 장면을 찾아보세요.
+      </p>
+    </section>
+
+    <section class="hero">
+      <div class="hero-photo">
+        <img src="assets/soyanggang-hero.jpg" alt="소양강 스카이워크와 강 풍경">
+        <div class="hero-caption"><b>CHUNCHEON</b>춘천의 오늘을 담는 여행</div>
+      </div>
+    </section>
+
+    <div class="indexline">
+      <span>GEUMGOK TRAVEL NOTES / 2026</span>
+    </div>
+
+    <section class="section" id="places">
+      <div class="section-top">
+        <div>
+          <div class="eyebrow">Places</div>
+          <h2>가볼 만한 곳</h2>
+        </div>
+        <p>풍경과 이야기를 따라 걷는 춘천</p>
+      </div>
+
+      <div class="places">
+        <article class="place interactive-card" tabindex="0" role="button" data-detail="kim-yujeong">
+          <div class="photo">
+            <img src="assets/김유정.jpg" alt="김유정 문학촌">
+          </div>
+          <div class="place-title"><span>01 / STORY</span><h3>김유정 문학촌</h3></div>
+          <p>문학이 깃든 마을을 천천히 둘러보기</p>
+          <span class="detail-hint">자세히 보기 ↗</span>
+        </article>
+
+        <article class="place interactive-card" tabindex="0" role="button" data-detail="soyanggang">
+          <div class="photo">
+            <img src="assets/소양강.jpg" alt="소양강 풍경">
+          </div>
+          <div class="place-title"><span>02 / LAKE</span><h3>소양강</h3></div>
+          <p>강을 따라 펼쳐지는 춘천의 풍경</p>
+          <span class="detail-hint">자세히 보기 ↗</span>
+        </article>
+
+        <article class="place interactive-card" tabindex="0" role="button" data-detail="gamzabatt">
+          <div class="photo">
+            <img src="assets/감자밭.jpg" alt="감자 모양 빵 참고 사진">
+          </div>
+          <div class="place-title"><span>03 / LOCAL</span><h3>감자밭</h3></div>
+          <p>춘천의 로컬 감자를 만나는 곳</p>
+          <span class="detail-hint">자세히 보기 ↗</span>
+        </article>
+
+        <article class="place interactive-card" tabindex="0" role="button" data-detail="myeongdong">
+          <div class="photo">
+            <img src="assets/chuncheon-street.jpg" alt="춘천 거리 참고 사진">
+          </div>
+          <div class="place-title"><span>04 / WALK</span><h3>명동거리</h3></div>
+          <p>도심의 활기를 느끼며 걷는 거리</p>
+          <span class="detail-hint">자세히 보기 ↗</span>
+        </article>
+
+        <article class="place interactive-card" tabindex="0" role="button" data-detail="ethiopia-memorial">
+          <div class="photo">
+            <img src="assets/에티오피아전쟁기념관.jpg" alt="에티오피아 참전용사 기념관 방문 사진">
+          </div>
+          <div class="place-title"><span>05 / HISTORY</span><h3>에티오피아 전쟁기념관</h3></div>
+          <p>춘천에 남은 역사와 기억</p>
+          <span class="detail-hint">자세히 보기 ↗</span>
+        </article>
+
+        <article class="place interactive-card" tabindex="0" role="button" data-detail="gongjicheon">
+          <div class="photo">
+            <img src="assets/공지천.jpg" alt="공지천에서 바라본 춘천대교">
+          </div>
+          <div class="place-title"><span>06 / RIVERSIDE</span><h3>공지천</h3></div>
+          <p>물가를 따라 쉬어가는 산책 코스</p>
+          <span class="detail-hint">자세히 보기 ↗</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="food-wrap" id="food">
+      <div class="food-inner">
+        <div class="section-top">
+          <div>
+            <div class="eyebrow">Local food</div>
+            <h2>춘천에서 한 끼</h2>
+          </div>
+          <p>여행 중 기억하고 싶은 맛</p>
+        </div>
+
+        <div class="food-grid">
+          <article class="food-card interactive-card" tabindex="0" role="button" data-detail="umi-dakgalbi">
+            <div class="photo">
+              <img src="assets/닭갈비.jpg" alt="닭갈비 메뉴 참고 사진">
+            </div>
+            <div class="info">
+              <small>01 / DAK-GALBI</small>
+              <h3>우미 닭갈비</h3>
+              <p>춘천에서 즐기는 닭갈비</p>
+            </div>
+            <span class="detail-hint">자세히 보기 ↗</span>
+          </article>
+
+          <article class="food-card interactive-card" tabindex="0" role="button" data-detail="hooni-kimchi">
+            <div class="photo">
+              <img src="assets/김치찜.jpg" alt="김치찌개 참고 사진">
+            </div>
+            <div class="info">
+              <small>02 / KIMCHI-JJIM</small>
+              <h3>훈이네 김치찜</h3>
+              <p>든든하게 즐기는 김치찜</p>
+            </div>
+            <span class="detail-hint">자세히 보기 ↗</span>
+          </article>
+
+          <article class="food-card interactive-card" tabindex="0" role="button" data-detail="olle-heukdon">
+            <div class="photo">
+              <img src="assets/올레흑돈.png" alt="돼지고기 구이 참고 사진">
+            </div>
+            <div class="info">
+              <small>03 / BLACK PORK</small>
+              <h3>올레흑돈</h3>
+              <p>흑돈으로 채우는 한 끼</p>
+            </div>
+            <span class="detail-hint">자세히 보기 ↗</span>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bottom">
+    <span><b>CHUNCHEON</b> · 춘천 여행 노트</span>
+    <span>여행의 장면을 사진으로 채워보세요</span>
+        <details class="image-credit">
+      <summary>사진 정보</summary>
+      <ul>
+        <li>메인 소양강 스카이워크 사진: <a href="https://commons.wikimedia.org/wiki/File:Soyang_River_Sky_Walk_01.jpg" target="_blank" rel="noopener">Youngjin, Soyang River Sky Walk</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+        <li>김유정 문학촌 사진: <a href="https://commons.wikimedia.org/wiki/File:Literature_Village_140953.jpg" target="_blank" rel="noopener">Liadmalone</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+        <li>춘천 거리 참고 사진: <a href="https://commons.wikimedia.org/wiki/File:A_market_street_in_Chuncheon,_Korea._(7657909880).jpg" target="_blank" rel="noopener">University of Fraser Valley</a> · <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a></li>
+        <li>에티오피아 참전용사 방문 사진: <a href="https://commons.wikimedia.org/wiki/File:%EC%97%90%ED%8B%B0%EC%98%A4%ED%94%BC%EC%95%84_%EC%B0%B8%EC%A0%84%EC%9A%A9%EC%82%AC_%EB%B0%A9%EB%AC%B8_(7445438568).jpg" target="_blank" rel="noopener">Republic of Korea Armed Forces</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0/" target="_blank" rel="noopener">CC BY-SA 2.0</a></li>
+        <li>공지천 사진: <a href="https://commons.wikimedia.org/wiki/File:20231226_%EA%B3%B5%EC%A7%80%EC%B2%9C%EC%9C%A0%EC%9B%90%EC%A7%80%EC%97%90%EC%84%9C_%EB%B0%94%EB%9D%BC%EB%B3%B8_%EC%B6%98%EC%B2%9C%EB%8C%80%EA%B5%90_%EC%A0%84%EA%B2%BD.jpg" target="_blank" rel="noopener">YellowTurtle9</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a></li>
+        <li>김치찌개 참고 사진: <a href="https://commons.wikimedia.org/wiki/File:Korean_stew_dish_-_Kimchi-jjigae_Kimchi_Stew_2019_(01).jpg" target="_blank" rel="noopener">한국농수산식품유통공사</a> · 공공누리 제1유형</li>
+      </ul>
+    </details>
+  </footer>
+
+  <!-- 카드를 클릭하면 여기에 선택한 장소의 상세 정보가 표시됩니다 -->
+  <div class="modal" id="place-modal" hidden>
+    <div class="modal-backdrop" data-close></div>
+
+    <section class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" type="button" aria-label="닫기">×</button>
+      <div class="modal-image" id="modal-image"></div>
+      <div class="modal-copy">
+        <small id="modal-type"></small>
+        <h2 id="modal-title"></h2>
+        <p id="modal-desc"></p>
+        <p id="modal-note"></p>
+        <a id="modal-source" href="#" target="_blank" rel="noopener">관련 정보 보기 ↗</a>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const detailData = {
+      "kim-yujeong": {
+        type: "관광지 · 문학",
+        title: "김유정 문학촌",
+        desc: "직접 가본 김유정 문학촌은 생각보다 넓고 배울 게 많았으며, 여러가지 체험을 할 수 있는 공예,미술 공방들이 있습니다. 안에 계신 해설사 분은 굉장히 친절하며 몇달 주기로 전시도 바뀌니 계절마다 가보는 것도 소소한 재미를 즐길 수 있습니다.",
+        note: "운영 시간과 전시 일정은 방문 전 공식 안내를 확인해 주세요.",
+        source: "https://www.chuncheon.go.kr/tour/destination/all-tour/detail/?tourId=189"
+      },
+      "soyanggang": {
+        type: "관광지 · 강 풍경",
+        title: "소양강",
+        desc: "소양강의 물길과 춘천의 산세를 함께 만나는 곳이에요. 스카이워크 주변을 걸으며 강 위 풍경을 감상할 수 있습니다. 풍경이 매우 아릅답습니다.",
+        note: "시설 운영 여부와 이용 안내는 방문 전 확인해 주세요.",
+        source: "https://www.chuncheon.go.kr/tour/destination/all-tour/detail/?tourId=216"
+      },
+      "gamzabatt": {
+        type: "로컬 장소 · 디저트",
+        title: "감자밭",
+        desc: "춘천 감자를 테마로 한 베이커리로 감자빵을 맛볼 수 있는 곳입니다. 감자빵은 겉피가 너무 촉촉 보드럽고 각각의 맛마다 개성이 넘쳐 맛있습니다. 카페로 들어서면 곳곳에 큰 감자 동상들이 있는데 귀엽습니다.",
+        note: "사진은 감자 모양 빵 참고 이미지이며 매장 실사진이 아닙니다.",
+        source: "https://www.chuncheon.go.kr/tour/"
+      },
+      "myeongdong": {
+        type: "관광지 · 도심 산책",
+        title: "명동거리",
+        desc: "춘천 도심의 상점과 먹거리를 둘러보기 좋은 거리입니다. 닭갈비 골목과 중앙시장도 함께 둘러볼 수 있습니다.",
+        note: "사진은 춘천 거리 참고 이미지이며 명동거리 현장 사진이 아닙니다.",
+        source: "https://korean.visitkorea.or.kr/"
+      },
+      "ethiopia-memorial": {
+        type: "관광지 · 역사",
+        title: "에티오피아 전쟁기념관",
+        desc: "한국전쟁에 참전한 에티오피아군의 역사와 양국의 우정을 기억하는 공간입니다. 전시를 통해 춘천에 남은 참전의 이야기를 살펴 볼 수 있습니다.",
+        note: "관람 시간과 휴관일은 방문 전 공식 안내를 확인해 주세요.",
+        source: "https://www.chuncheon.go.kr/tour/"
+      },
+      "gongjicheon": {
+        type: "관광지 · 산책",
+        title: "공지천",
+        desc: "공지천 주변의 조각 작품과 잔디 공간을 걸으며 쉬어가기 좋습니다. 물가 풍경과 공원을 함께 즐길 수 있는 산책 코스입니다.",
+        note: "계절과 날씨에 따라 풍경이 달라져요.",
+        source: "https://www.chuncheon.go.kr/tour/destination/all-tour/detail/?tourId=184"
+      },
+      "umi-dakgalbi": {
+        type: "먹거리 · 닭갈비",
+        title: "우미 닭갈비",
+        desc: "춘천의 대표 메뉴인 닭갈비를 즐길 수 있는 곳입니다. 철판에 볶아 먹고 마지막에 볶음밥으로 마무리하면 기깔납니다.",
+        note: "사진은 닭갈비 메뉴 참고 이미지이며 직접 찍은 사진입니다. 방문 전 영업 여부와 메뉴를 확인해 주세요.",
+        source: "https://www.chuncheon.go.kr/tour/destination/all-tour/detail/?tourId=98"
+      },
+      "hooni-kimchi": {
+        type: "먹거리 · 김치찜",
+        title: "훈이네 김치찜",
+        desc: "잘 익은 김치와 고기를 푹 익혀 내는 김치찜을 중심으로 소개하는 곳입니다. 든든한 한 끼가 생각날 때 가시는 걸 추천드립니다. 김치찜 치곤 조금 답니다",
+        note: "사진은 김치찌개 참고 이미지이며 직접 찍은 사진입니다. 메뉴와 영업 정보는 방문 전 확인해 주세요.",
+        source: "https://map.naver.com/p/search/춘천%20훈이네%20김치찜"
+      },
+      "olle-heukdon": {
+        type: "먹거리 · 흑돈",
+        title: "올레흑돈",
+        desc: "흑돈을 중심으로 춘천의 고기 메뉴를 찾아볼 수 있는 곳이에요. 방문 전에 매장 형태와 이용 가능 여부를 확인해 주세요.",
+        note: "사진은 올레흑돈 리뷰에서 찾은 이미지이며 해당 매장 실사진입니다.",
+        source: "https://map.naver.com/p/search/춘천%20올레흑돈"
+      }
+    };
+
+    const modal = document.getElementById("place-modal");
+    const modalImage = document.getElementById("modal-image");
+    let lastFocus = null;
+
+    function openDetail(card) {
+      const info = detailData[card.dataset.detail];
+      if (!info) return;
+
+      const image = card.querySelector("img");
+
+      document.getElementById("modal-type").textContent = info.type;
+      document.getElementById("modal-title").textContent = info.title;
+      document.getElementById("modal-desc").textContent = info.desc;
+      document.getElementById("modal-note").textContent = info.note;
+      document.getElementById("modal-source").href = info.source;
+
+      modalImage.replaceChildren();
+
+      if (image) {
+        modalImage.append(image.cloneNode());
+      }
+
+      lastFocus = document.activeElement;
+      modal.hidden = false;
+      document.body.style.overflow = "hidden";
+      modal.querySelector(".modal-close").focus();
+    }
+
+    function closeDetail() {
+      modal.hidden = true;
+      document.body.style.overflow = "";
+
+      if (lastFocus) {
+        lastFocus.focus();
+      }
+    }
+
+    document.querySelectorAll(".interactive-card").forEach(card => {
+      card.addEventListener("click", event => {
+        // 상세창 카드 안의 링크를 누른 경우에는 상세창을 열지 않습니다.
+        if (event.target.closest("a")) return;
+        openDetail(card);
+      });
+
+      card.addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openDetail(card);
+        }
+      });
+    });
+
+    modal.addEventListener("click", event => {
+      if (event.target.closest("[data-close], .modal-close")) {
+        closeDetail();
+      }
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && !modal.hidden) {
+        closeDetail();
+      }
+    });
+  </script>
+</body>
+</html>
